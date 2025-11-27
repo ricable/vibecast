@@ -13,3 +13,8 @@ rust-engine/target/
 coverage/
 .turbo/
 *.tsbuildinfo
+
+# Runtime data directories
+data/
+memory/
+.claude-flow/
