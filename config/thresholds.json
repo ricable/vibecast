@@ -1,0 +1,55 @@
+{
+  "accessibility": {
+    "rrcSetupSuccessRate": {
+      "target": 99.5,
+      "warning": 99,
+      "critical": 98
+    },
+    "erabSetupSuccessRate": {
+      "target": 99,
+      "warning": 98,
+      "critical": 97
+    },
+    "rachSuccessRate": {
+      "target": 99,
+      "warning": 98,
+      "critical": 97
+    }
+  },
+  "retainability": {
+    "callDropRate": {
+      "target": 1,
+      "warning": 2,
+      "critical": 3
+    },
+    "erabDropRate": {
+      "target": 0.5,
+      "warning": 1,
+      "critical": 2
+    }
+  },
+  "mobility": {
+    "hoSuccessRate": {
+      "target": 98,
+      "warning": 95,
+      "critical": 90
+    },
+    "interFreqHoSuccessRate": {
+      "target": 95,
+      "warning": 90,
+      "critical": 85
+    }
+  },
+  "utilization": {
+    "prbUtilizationDl": {
+      "target": 70,
+      "warning": 80,
+      "critical": 90
+    },
+    "prbUtilizationUl": {
+      "target": 60,
+      "warning": 70,
+      "critical": 80
+    }
+  }
+}

@@ -13,7 +13,13 @@
     "agent:ran-docs": "tsx src/agents/ran-docs-agent.ts",
     "agent:alarms": "tsx src/agents/alarm-fault-agent.ts",
     "agent:kpi": "tsx src/agents/kpi-analyzer-agent.ts",
-    "agent:config": "tsx src/agents/config-management-agent.ts"
+    "agent:config": "tsx src/agents/config-management-agent.ts",
+    "e2b:spawn": "tsx src/e2b-sandbox/sandbox-spawner.ts",
+    "e2b:status": "tsx src/e2b-sandbox/sandbox-status.ts",
+    "init:vectors": "tsx src/embeddings/init-vector-db.ts",
+    "optimize": "tsx src/workflows/optimization-workflow.ts",
+    "swarm": "npx claude-flow@alpha swarm",
+    "hive-mind": "npx claude-flow@alpha hive-mind"
   },
   "keywords": [
     "ericsson",
@@ -26,20 +32,21 @@
   ],
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
+    "@e2b/code-interpreter": "^2.3.1",
     "@modelcontextprotocol/sdk": "^1.0.4",
-    "agentic": "^9.1.1",
-    "zod": "^3.24.1",
-    "zod-to-json-schema": "^3.24.1",
-    "dotenv": "^16.4.7",
-    "winston": "^3.17.0",
     "date-fns": "^4.1.0",
-    "lodash-es": "^4.17.21"
+    "dotenv": "^16.4.7",
+    "e2b": "^2.8.1",
+    "lodash-es": "^4.17.21",
+    "winston": "^3.17.0",
+    "zod": "^3.24.1",
+    "zod-to-json-schema": "^3.24.1"
   },
   "devDependencies": {
-    "@types/node": "^22.10.2",
     "@types/lodash-es": "^4.17.12",
-    "typescript": "^5.7.2",
+    "@types/node": "^22.10.2",
     "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   },
   "engines": {

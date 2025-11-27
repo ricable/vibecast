@@ -1,0 +1,129 @@
+{
+  "defaultProvider": "gemini",
+  "providers": {
+    "gemini": {
+      "enabled": true,
+      "apiKeyEnv": "GOOGLE_GEMINI_API_KEY",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+      "models": [
+        "gemini-1.5-pro",
+        "gemini-1.5-flash",
+        "gemini-2.0-flash-exp",
+        "gemini-1.5-pro-latest"
+      ],
+      "defaultModel": "gemini-1.5-flash",
+      "rateLimits": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 1000000
+      }
+    },
+    "openrouter": {
+      "enabled": false,
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "defaultModel": "deepseek/deepseek-chat",
+      "models": [
+        "deepseek/deepseek-chat",
+        "deepseek/deepseek-coder",
+        "anthropic/claude-3.5-sonnet",
+        "google/gemini-pro"
+      ]
+    },
+    "anthropic": {
+      "enabled": false,
+      "apiKeyEnv": "ANTHROPIC_API_KEY",
+      "models": [
+        "claude-sonnet-4-20250514",
+        "claude-opus-4-20250514"
+      ]
+    }
+  },
+  "routingRules": [
+    {
+      "name": "complex-reasoning",
+      "description": "Route complex analysis and architecture tasks to powerful models",
+      "condition": {
+        "taskType": ["architecture", "debugging", "complex-analysis", "optimization-planning"],
+        "minTokens": 1000
+      },
+      "provider": "gemini",
+      "model": "gemini-1.5-pro",
+      "priority": 1
+    },
+    {
+      "name": "code-generation",
+      "description": "Route coding and scripting tasks to fast models",
+      "condition": {
+        "taskType": ["coding", "scripting", "automation", "parameter-generation"]
+      },
+      "provider": "gemini",
+      "model": "gemini-1.5-flash",
+      "priority": 2
+    },
+    {
+      "name": "kpi-analysis",
+      "description": "Route KPI analysis and reporting tasks",
+      "condition": {
+        "taskType": ["kpi-analysis", "reporting", "trending"],
+        "agentType": "kpi-analyzer"
+      },
+      "provider": "gemini",
+      "model": "gemini-1.5-flash",
+      "priority": 3
+    },
+    {
+      "name": "feature-lookup",
+      "description": "Route feature documentation queries",
+      "condition": {
+        "taskType": ["feature-search", "documentation", "parameter-lookup"],
+        "agentType": "feature-expert"
+      },
+      "provider": "gemini",
+      "model": "gemini-1.5-flash",
+      "priority": 4
+    },
+    {
+      "name": "general-tasks",
+      "description": "Default routing for general tasks",
+      "condition": {
+        "default": true
+      },
+      "provider": "gemini",
+      "model": "gemini-1.5-flash",
+      "priority": 100
+    }
+  ],
+  "fallbackChain": [
+    {
+      "provider": "gemini",
+      "model": "gemini-1.5-flash"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-1.5-pro"
+    }
+  ],
+  "costOptimization": {
+    "enabled": true,
+    "maxCostPerRequest": 0.05,
+    "preferCheaperModels": true,
+    "cacheResponses": true,
+    "cacheTTLSeconds": 3600
+  },
+  "monitoring": {
+    "enabled": true,
+    "logRequests": true,
+    "metricsPath": "./.claude-flow/metrics",
+    "alertThresholds": {
+      "errorRate": 0.05,
+      "latencyP95Ms": 5000,
+      "costPerHour": 10
+    }
+  },
+  "retryPolicy": {
+    "maxRetries": 3,
+    "initialDelayMs": 1000,
+    "maxDelayMs": 10000,
+    "backoffMultiplier": 2
+  }
+}
