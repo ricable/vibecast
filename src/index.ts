@@ -1,11 +1,21 @@
-// Main entry point for Ericsson RAN Time Series Analysis Platform
-// Integrates agentic-flow, agentdb, claude-flow, and Rust prediction engine
+// Main entry point for Ericsson RAN Advanced Automation Platform
+// Integrates ruvector, GNN, semantic routing, and distributed vector operations
 
 import { MultiAgentOrchestrator } from './orchestrator/multi-agent-orchestrator.js';
 import { DataAggregationService } from './services/data-aggregation.js';
 import { TimeSeriesAnalysisSkill } from './skills/timeseries-analysis-skill.js';
 import { config } from './core/config.js';
 import { logger } from './core/logger.js';
+
+// Advanced RuVector Components
+import { AdvancedRANOrchestrator, createAdvancedOrchestrator } from './ruvector/advanced-ran-orchestrator.js';
+import { RANVectorDatabase, initializeRANVectorDatabase, getRANVectorDatabase } from './ruvector/ran-vector-database.js';
+import { SelfLearningRANGNN, createSelfLearningGNN } from './gnn/self-learning-gnn.js';
+import { SemanticIntentRouter, createSemanticRouter } from './router/semantic-intent-router.js';
+import { RANEmbeddingGenerator, createEmbeddingGenerator } from './embeddings/ran-embedding-generator.js';
+import { NetworkTopologyGraph, createNetworkTopologyGraph } from './graph/network-topology-graph.js';
+import { SelfLearningAnomalyDetector, createAnomalyDetector } from './vectors/self-learning-anomaly-detector.js';
+import { DistributedClusterManager, createClusterManager } from './cluster/distributed-cluster-manager.js';
 import type {
   RanNode,
   KpiMeasurement,
@@ -168,11 +178,57 @@ export {
   TimeSeriesAnalysisSkill,
 };
 
+// Export Advanced RuVector Components
+export {
+  // Orchestrator
+  AdvancedRANOrchestrator,
+  createAdvancedOrchestrator,
+
+  // Vector Database
+  RANVectorDatabase,
+  initializeRANVectorDatabase,
+  getRANVectorDatabase,
+
+  // Self-Learning GNN
+  SelfLearningRANGNN,
+  createSelfLearningGNN,
+
+  // Semantic Router
+  SemanticIntentRouter,
+  createSemanticRouter,
+
+  // Embedding Generator
+  RANEmbeddingGenerator,
+  createEmbeddingGenerator,
+
+  // Network Topology Graph
+  NetworkTopologyGraph,
+  createNetworkTopologyGraph,
+
+  // Anomaly Detector
+  SelfLearningAnomalyDetector,
+  createAnomalyDetector,
+
+  // Distributed Cluster
+  DistributedClusterManager,
+  createClusterManager,
+};
+
 export * from './types/ran-models.js';
 export * from './agents/base-agent.js';
 export * from './agents/ran-docs-agent.js';
 export * from './agents/alarm-fault-agent.js';
 export * from './agents/kpi-analyzer-agent.js';
 export * from './agents/config-management-agent.js';
+
+// Export RuVector module types
+export type * from './ruvector/ran-vector-database.js';
+export type * from './gnn/self-learning-gnn.js';
+export type * from './router/semantic-intent-router.js';
+export type * from './embeddings/ran-embedding-generator.js';
+export type * from './graph/network-topology-graph.js';
+export type * from './vectors/self-learning-anomaly-detector.js';
+export type * from './cluster/distributed-cluster-manager.js';
+export type * from './ruvector/advanced-ran-orchestrator.js';
 
 export default EricssonRanPlatform;
